@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Doctor } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
@@ -8,6 +8,14 @@ const resolvers = {
         return await User.findOne({ email });
       } catch (error) {
         console.log("error in user resolver:", error.message);
+      }
+    },
+    // doctors: [Doctor]
+    doctors: async () => {
+      try {
+        return await Doctor.find({});
+      } catch (error) {
+        console.log("error in doctors query", error.message);
       }
     },
   },

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Dr. Sarah Johnson",
+    "email": "sarah.johnson@example.com",
+    "password": "securePassword123",
+    "image": "/assets/doc1",
+    "speciality": "Dermatologist",
+    "degree": "MD in Dermatology",
+    "experience": "8 years",
+    "about": "Passionate about helping patients achieve healthy and glowing skin. Expertise in treating a wide range of skin conditions.",
+    "available": true,
+    "fees": "100",
+    "street": "456 Skin Health Ave",
+    "city": "New York",
+    "postcode": "10001"
+  },
+  {
+    "name": "Dr. Michael Reynolds",
+    "email": "michael.reynolds@example.com",
+    "password": "strongPassword789",
+    "image": "/assets/doc2",
+    "speciality": "Pediatrician",
+    "degree": "MBBS, MD in Pediatrics",
+    "experience": "12 years",
+    "about": "Dedicated to providing exceptional healthcare for children, focusing on their growth, development, and wellness.",
+    "available": true,
+    "fees": "120",
+    "street": "123 Children's Care St",
+    "city": "San Francisco",
+    "postcode": "94103"
+  }
+]

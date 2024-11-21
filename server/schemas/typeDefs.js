@@ -13,8 +13,26 @@ const typeDefs = `
     user: User
   }
 
+  type Doctor {
+    _id: ID
+    name: String!
+    email: String!
+    password: String!
+    image: String!
+    speciality: String!
+    degree: String!
+    experience: String!
+    about: String!
+    available: Boolean!
+    fees: String!
+    street: String!
+    city: String!
+    postcode: String!
+  }
+
   type Query {
     user(email: String!): User
+    doctors: [Doctor]
   }
 
   type Mutation {
