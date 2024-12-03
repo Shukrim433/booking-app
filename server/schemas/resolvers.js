@@ -1,4 +1,4 @@
-const { User, Doctor } = require("../models");
+const { User, Doctor, Appointment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
@@ -71,6 +71,28 @@ const resolvers = {
       } catch (error) {
         console.log("error in login resolver:", error.message);
       }
+    },
+    // addAppointment(doctorId: ID!, slot_time: String!, slot_date: String!, reason: String!): Appointment
+    addAppointment: async (
+      parent,
+      { doctorId, slot_time, slot_date, reason },
+      context
+    ) => {
+      if (context.user) {
+        try {
+          const appointment = await Appointment.create({
+            slot_time,
+            slot_date,
+            doctorId, // will get from params front end
+            userId: context.user._id,
+            reason,
+          });
+          return appointment;
+        } catch (error) {
+          console.log("error in addAppointment resolver:", error.message);
+        }
+      }
+      throw AuthenticationError;
     },
   },
 };

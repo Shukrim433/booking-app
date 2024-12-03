@@ -25,9 +25,18 @@ const typeDefs = `
     about: String!
     available: Boolean!
     fees: String!
-    street: String!
-    city: String!
-    postcode: String!
+    address_line_1: String!
+    address_line_2: String!
+  }
+
+  type Appointment {
+    _id: ID
+    doctorId: ID!
+    userId: ID!
+    slot_time: String!
+    slot_date: String!
+    reason: String!
+    createdAt: String
   }
 
   type Query {
@@ -46,6 +55,7 @@ const typeDefs = `
       phone: String
     ): Auth
     login(email: String!, password: String!): Auth
+    addAppointment(doctorId: ID!, slot_time: String!, slot_date: String!, reason: String!): Appointment
   }
 `;
 
