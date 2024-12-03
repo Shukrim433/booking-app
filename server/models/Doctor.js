@@ -44,23 +44,19 @@ const doctorSchema = new Schema(
       type: String, // change type to number when creating doc login - see wireframe to understand
       require: true,
     },
-    street: {
+    address_line_1: {
       // change these three to a single field: address - type: Object - when creating doctor login
       type: String,
       require: true,
     },
-    city: {
+    address_line_2: {
       type: String,
       require: true,
     },
-    postcode: {
-      type: String,
-      require: true,
+    slots_booked: {
+      type: Object,
+      default: {},
     },
-    /* slots_booked: {
-      type: Array,
-      default: [],
-    }, */
   },
   { minimize: false }
 );
