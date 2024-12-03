@@ -31,8 +31,10 @@ const typeDefs = `
   }
 
   type Query {
-    user(email: String!): User
+    user(_id: ID!): User
+    users: [User]
     doctors: [Doctor]
+    doctor(_id: ID!): Doctor
   }
 
   type Mutation {

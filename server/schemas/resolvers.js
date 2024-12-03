@@ -2,10 +2,18 @@ const { User, Doctor } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
-    // user(email: String!): User
-    user: async (parent, { email }) => {
+    // users: [User]
+    users: async () => {
       try {
-        return await User.findOne({ email });
+        return await User.find({});
+      } catch (error) {
+        console.log("error in users controller", error.message);
+      }
+    },
+    // user(_id: ID!): User
+    user: async (parent, { _id }) => {
+      try {
+        return await User.findOne({ _id });
       } catch (error) {
         console.log("error in user resolver:", error.message);
       }
@@ -16,6 +24,14 @@ const resolvers = {
         return await Doctor.find({});
       } catch (error) {
         console.log("error in doctors query", error.message);
+      }
+    },
+    // doctor(_id: ID!): Doctor
+    doctor: async (parent, { _id }) => {
+      try {
+        return await Doctor.findOne({ _id });
+      } catch (error) {
+        console.log("error in doctor resolver", error.message);
       }
     },
   },
