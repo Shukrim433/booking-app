@@ -27,13 +27,15 @@ const typeDefs = `
     fees: String!
     address_line_1: String!
     address_line_2: String!
+    appointments: [Appointment]!
   }
 
   type Appointment {
     _id: ID
-    doctorId: ID!
+    doctorId: Doctor!
     userId: ID!
     slot_time: String!
+    slot_month: String!
     slot_date: String!
     reason: String!
     createdAt: String
@@ -44,6 +46,7 @@ const typeDefs = `
     users: [User]
     doctors: [Doctor]
     doctor(_id: ID!): Doctor
+    appointments(userId: ID!): [Appointment]
   }
 
   type Mutation {
@@ -55,7 +58,7 @@ const typeDefs = `
       phone: String
     ): Auth
     login(email: String!, password: String!): Auth
-    addAppointment(doctorId: ID!, slot_time: String!, slot_date: String!, reason: String!): Appointment
+    addAppointment(slot_month: String!, slot_time: String!, slot_date: String!, reason: String!): Appointment
   }
 `;
 

@@ -57,6 +57,12 @@ const doctorSchema = new Schema(
       type: Object,
       default: {},
     },
+    appointments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Appointment"
+      }
+    ]
   },
   { minimize: false }
 );

@@ -19,6 +19,10 @@ const appointmentSchema = new Schema({
     type: String,
     required: true,
   },
+  slot_month: {
+    type: String,
+    required: true
+  },
   reason: {
     type: String,
     required: true,
