@@ -1,4 +1,5 @@
 const { User, Doctor, Appointment } = require("../models");
+const { findOneAndUpdate } = require("../models/User");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
@@ -90,7 +91,7 @@ const resolvers = {
     addAppointment: async (
       parent,
       { doctorId, slot_month, slot_time, slot_date, reason },
-      context // needs context
+      context
     ) => {
       if (context.user) {
         try {
@@ -111,6 +112,28 @@ const resolvers = {
           return appointment;
         } catch (error) {
           console.log("error in addAppointment resolver:", error.message);
+        }
+      }
+      throw AuthenticationError;
+    },
+    // cancelAppointment(appointmentId: String!): [Appointment]
+    cancelAppointment: async (parent, { appointmentId }, context) => {
+      if (context.user) {
+        try {
+          const appointment = await Appointment.findOne({ _id: appointmentId });
+          await Doctor.findOneAndUpdate(
+            { _id: appointment.doctorId },
+            { $pull: { appointments: appointment._id } }
+          );
+          await Appointment.findOneAndDelete({
+            _id: appointmentId,
+          });
+
+          const appointments = await Appointment.find({});
+
+          return appointments;
+        } catch (error) {
+          console.log("error in cancelAppointment resolver:", error.message);
         }
       }
       throw AuthenticationError;

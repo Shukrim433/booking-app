@@ -59,6 +59,7 @@ const typeDefs = `
     ): Auth
     login(email: String!, password: String!): Auth
     addAppointment(doctorId: String!, slot_month: String!, slot_time: String!, slot_date: String!, reason: String!): Appointment
+    cancelAppointment(appointmentId: String!): [Appointment]
   }
 `;
 
