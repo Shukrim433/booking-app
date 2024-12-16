@@ -58,7 +58,7 @@ const typeDefs = `
       phone: String
     ): Auth
     login(email: String!, password: String!): Auth
-    addAppointment(slot_month: String!, slot_time: String!, slot_date: String!, reason: String!): Appointment
+    addAppointment(doctorId: String!, slot_month: String!, slot_time: String!, slot_date: String!, reason: String!): Appointment
   }
 `;
 

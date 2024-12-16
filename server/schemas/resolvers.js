@@ -35,15 +35,18 @@ const resolvers = {
       }
     },
     // appointments(userId: ID!): [Appointment]
-    appointments: async (parent, { userId }) => { // needs context
-      try {
-        const appointments = await Appointment.find({ userId }).populate(
-          "doctorId"
-        );
-        return appointments;
-      } catch (error) {
-        console.log("error in appointments resolver:", error.message);
+    appointments: async (parent, { userId }, context) => {
+      if (context.user) {
+        try {
+          const appointments = await Appointment.find({ userId }).populate(
+            "doctorId"
+          );
+          return appointments;
+        } catch (error) {
+          console.log("error in appointments resolver:", error.message);
+        }
       }
+      throw AuthenticationError;
     },
   },
   Mutation: {
@@ -83,32 +86,34 @@ const resolvers = {
         console.log("error in login resolver:", error.message);
       }
     },
-    // addAppointment(slot_month: String!, slot_time: String!, slot_date: String!, reason: String!): Appointment
+    // addAppointment(doctorId, slot_month: String!, slot_time: String!, slot_date: String!, reason: String!): Appointment
     addAppointment: async (
       parent,
-      { slot_month, slot_time, slot_date, reason } // needs context
+      { doctorId, slot_month, slot_time, slot_date, reason },
+      context // needs context
     ) => {
-      try {
-        const doctorId = "6754539f0e0a2766aafcb481";
-        const userId = "673612e3d364868f27ab0c80";
-        const appointment = await Appointment.create({
-          slot_time,
-          slot_month,
-          slot_date,
-          doctorId,
-          userId,
-          reason,
-        });
+      if (context.user) {
+        try {
+          const appointment = await Appointment.create({
+            doctorId,
+            slot_month,
+            slot_time,
+            slot_date,
+            reason,
+            userId: context.user._id,
+          });
 
-        // update the doctor's appointment's array
-        await Doctor.findByIdAndUpdate(
-          doctorId,
-          { $push: { appointments: appointment._id } } // push the new appointment ID into the array
-        );
-        return appointment;
-      } catch (error) {
-        console.log("error in addAppointment resolver:", error.message);
+          // update the doctor's appointment's array
+          await Doctor.findByIdAndUpdate(
+            doctorId,
+            { $push: { appointments: appointment._id } } // push the new appointment ID into the array
+          );
+          return appointment;
+        } catch (error) {
+          console.log("error in addAppointment resolver:", error.message);
+        }
       }
+      throw AuthenticationError;
     },
   },
 };
