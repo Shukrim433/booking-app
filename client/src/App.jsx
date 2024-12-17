@@ -1,14 +1,15 @@
-import "./App.css";
-import Header from "./components/Header";
-import Auth from "../utils/auth";
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
+import "./App.css";
+import Header from "./components/Header";
+import Auth from "../utils/auth";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import { setContext } from '@apollo/client/link/context';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -36,10 +37,8 @@ const client = new ApolloClient({
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <div className="body">
-        <Header />
-        <Outlet />
-      </div>
+      <Header />
+      <Outlet />
     </ApolloProvider>
   );
 };
