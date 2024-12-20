@@ -5,11 +5,11 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import "./App.css";
-import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 import Auth from "../utils/auth";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { setContext } from '@apollo/client/link/context';
+import { setContext } from "@apollo/client/link/context";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -37,8 +37,10 @@ const client = new ApolloClient({
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <Header />
-      <Outlet />
+      <div className="App px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+        <Navbar />
+        <Outlet />
+      </div>
     </ApolloProvider>
   );
 };
