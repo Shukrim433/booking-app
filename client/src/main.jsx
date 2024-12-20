@@ -13,48 +13,65 @@ import MyAppointments from "./pages/MyAppointments.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      error: <Error />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
+        },
+        {
+          path: "/doctors",
+          element: <Doctors />,
+        },
+        {
+          path: "/doctor/:doctorId",
+          element: <Doctor />,
+        },
+        {
+          path: "/myAppointments",
+          element: <MyAppointments />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/contact",
+          element: <Contact />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    error: <Error />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/signup",
-        element: <Signup />,
-      },
-      {
-        path: "/doctors",
-        element: <Doctors />,
-      },
-      {
-        path: "/doctor/:doctorId",
-        element: <Doctor />,
-      },
-      {
-        path: "/myAppointments",
-        element: <MyAppointments />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-    ],
-  },
-]);
+    future: {
+      v7_fetcherPersist: true,
+      v7_normalizeFormMethod: true,
+      v7_partialHydration: true,
+      v7_relativeSplatPath: true,
+      v7_skipActionErrorRevalidation: true,
+      v7_startTransition: true,
+    },
+  }
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <RouterProvider
+    future={{
+      v7_startTransition: true,
+    }}
+    router={router}
+  />
 );
