@@ -6,6 +6,11 @@ import Auth from "../../utils/auth";
 const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   return (
     <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
       <NavLink to="/">
@@ -37,7 +42,7 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-4">
-        {!Auth.loggedIn() ? (
+        {Auth.loggedIn() ? (
           <>
             <div className="flex items-center gap-2 cursor-pointer group relative">
               {/* PROFILE ICON */}
@@ -78,10 +83,18 @@ const Navbar = () => {
               {/* DROP DOWN MENU - ON HOVER */}
               <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block">
                 <div className="min-w-48 flex flex-col gap-4 dropdown bg-slate-100 p-4 rounded-lg ">
-                  <p className="hover:text-black cursor-pointer">
+                  <p
+                    onClick={() => navigate("/myAppointments")}
+                    className="hover:text-black cursor-pointer"
+                  >
                     My appointments
                   </p>
-                  <p className="hover:text-black cursor-pointer">Logout</p>
+                  <p
+                    onClick={logout}
+                    className="hover:text-black cursor-pointer"
+                  >
+                    Logout
+                  </p>
                 </div>
               </div>
             </div>{" "}
