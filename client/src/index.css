@@ -13,3 +13,7 @@
 .book-btn:hover {
   box-shadow: rgba(0.5, 0.5, 0.5, 0.5) 1.95px 1.95px 2.6px;
 }
+
+::-webkit-scrollbar {
+  @apply hidden;
+}
