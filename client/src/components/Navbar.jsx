@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { assets } from "../assets/assets";
 import { NavLink, useNavigate } from "react-router-dom";
 import Auth from "../../utils/auth";
+import Profile from "./icons/Profile";
+import ChevronDown from "./icons/ChevronDown";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -46,39 +48,12 @@ const Navbar = () => {
           <>
             <div className="flex items-center gap-2 cursor-pointer group relative">
               {/* PROFILE ICON */}
-              <div className=" ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                  />
-                </svg>
+              <div>
+                <Profile />
               </div>
               {/* DROPDOWN ICON */}
-              <div className="">
-                {" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
+              <div>
+                <ChevronDown />
               </div>
               {/* DROP DOWN MENU - ON HOVER */}
               <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block">

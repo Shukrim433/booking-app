@@ -1,5 +1,6 @@
 import React from "react";
 import { assets } from "../assets/assets";
+import ArrowRight from "./icons/ArrowRight";
 
 const Hero = () => {
   return (
@@ -20,7 +21,9 @@ const Hero = () => {
             href="#speciality"
           >
             Book appointment{" "}
-            <img className="w-3" src={assets.arrow_icon} alt="right arrow" />
+            <div className="mt-0.5">
+              <ArrowRight />
+            </div>
           </a>
         </div>
       </div>
