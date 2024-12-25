@@ -45,6 +45,7 @@ const typeDefs = `
     user(_id: ID!): User
     users: [User]
     doctors: [Doctor]
+    doctorsBySpeciality(speciality: String!): [Doctor]
     doctor(_id: ID!): Doctor
     appointments(userId: ID!): [Appointment]
   }

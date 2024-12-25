@@ -27,6 +27,14 @@ const resolvers = {
         console.log("error in doctors query", error.message);
       }
     },
+    // doctorsBySpeciality(speciality: String!): [Doctor]
+    doctorsBySpeciality: async (parent, { speciality }) => {
+      try {
+        return await Doctor.find({ speciality });
+      } catch (error) {
+        console.log("error in speciality resolver:", error.message);
+      }
+    },
     // doctor(_id: ID!): Doctor
     doctor: async (parent, { _id }) => {
       try {
