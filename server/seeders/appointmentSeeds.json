@@ -1,0 +1,18 @@
+[
+  {
+    "doctorId": "676c14b6375582fb447723bc",
+    "userId": "673612e3d364868f27ab0c80",
+    "slot_time": "9:00 am",
+    "slot_date": "10",
+    "slot_month": "1",
+    "reason": "stomach ache"
+  },
+  {
+    "doctorId": "676c14b6375582fb447723bc",
+    "userId": "673612e3d364868f27ab0c80",
+    "slot_time": "10:00 am",
+    "slot_date": "11",
+    "slot_month": "1",
+    "reason": "migraines"
+  }
+]
