@@ -1,7 +1,7 @@
 const db = require("../config/connection");
 const { Doctor, Appointment } = require("../models");
 const doctorSeeds = require("./doctorSeeds.json");
-const appointmentSeeds = require("./appointmentSeeds.json")
+const appointmentSeeds = require("./appointmentSeeds.json");
 const cleanDB = require("./cleanDB");
 
 db.once("open", async () => {
@@ -10,7 +10,7 @@ db.once("open", async () => {
     await cleanDB("Doctor", "doctors");
     await Doctor.create(doctorSeeds);
 
-    for (let i = 0; i < appointmentSeeds.length; i++) {
+    /*  for (let i = 0; i < appointmentSeeds.length; i++) {
       console.log("Creating appointment:", appointmentSeeds[i]);
       const { _id, doctorId } = await Appointment.create(appointmentSeeds[i]);
       const doctor =  await Doctor.findOneAndUpdate(
@@ -21,7 +21,7 @@ db.once("open", async () => {
       if(!doctor){
         console.error(`no doctor with the id ${doctorId} found`)
       }
-    }
+    } */
   } catch (error) {
     console.log("error during seeding", error);
     process.exit(1);
