@@ -17,7 +17,7 @@ const Hero = () => {
             schedule your appointment hassle-free
           </p>
           <a
-            className="book-btn flex gap-2 px-4 py-2 rounded-full bg-white hover:scale-105 transition-all duration-300"
+            className="flex gap-2 px-4 py-2 rounded-full bg-white hover:scale-105 transition-all duration-300"
             href="#speciality"
           >
             Book appointment{" "}
