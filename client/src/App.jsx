@@ -10,6 +10,7 @@ import Auth from "../utils/auth";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { setContext } from "@apollo/client/link/context";
+import { AppContextProvider } from "./context/AppContext";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -37,10 +38,12 @@ const client = new ApolloClient({
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <div className="App px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-        <Navbar />
-        <Outlet />
-      </div>
+      <AppContextProvider>
+        <div className="App px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+          <Navbar />
+          <Outlet />
+        </div>
+      </AppContextProvider>
     </ApolloProvider>
   );
 };
