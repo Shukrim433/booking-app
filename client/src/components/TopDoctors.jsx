@@ -25,7 +25,7 @@ const TopDoctors = () => {
         ) : (
           doctors.slice(0, 10).map((doctor) => (
             <div
-              onClick={() => navigate(`doctor/${doctor._id}`)}
+              onClick={() => navigate(`doctors/${doctor._id}`)}
               className="border rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 "
               key={doctor._id}
             >
@@ -46,7 +46,13 @@ const TopDoctors = () => {
           ))
         )}
       </div>
-      <button className="bg-blue-100 text-gray-800 px-14 py-3 rounded-full mt-10">
+      <button
+        onClick={() => {
+          navigate("/doctors");
+          scrollTo(0, 0);
+        }}
+        className="bg-blue-100 text-gray-800 px-14 py-3 rounded-full mt-10"
+      >
         more
       </button>
     </div>

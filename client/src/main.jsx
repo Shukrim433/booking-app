@@ -37,7 +37,7 @@ const router = createBrowserRouter(
           element: <Doctors />,
         },
         {
-          path: "/doctor/:doctorId",
+          path: "/doctors/:doctorId",
           element: <Doctor />,
         },
         {
