@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { setContext } from "@apollo/client/link/context";
 import { AppContextProvider } from "./context/AppContext";
+import Footer from "./components/Footer";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -42,6 +43,7 @@ const App = () => {
         <div className="App px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
           <Navbar />
           <Outlet />
+          <Footer />
         </div>
       </AppContextProvider>
     </ApolloProvider>
