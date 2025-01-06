@@ -10,12 +10,8 @@ const Footer = () => {
       <div className="flex flex-col sm:grid grid-cols-[4fr_1fr_1fr] gap-14 my-10 mt-40">
         {/* LEFT */}
         <div>
-          <h1 className="font-bold text-primary text-lg mb-3">
-            <span>
-              <img className="ml-3 w-40" src={assets.logo} alt="logo icon" />
-            </span>
-            Docday
-          </h1>
+          <img className="mb-3 w-40" src={assets.logo} alt="logo icon" />
+
           <p className="text-sm leading-6 w-full md:w-2/3">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -52,7 +48,7 @@ const Footer = () => {
         </div>
       </div>
       {/* BOTTOM */}
-      <div className="text-center text-sm pt-4 mt-10 border-t-2">
+      <div className="text-center py-4 text-sm mt-10 border-t-2">
         <p>Copyright © 2024 GreatStack - All Right Reserved.</p>
       </div>
     </div>

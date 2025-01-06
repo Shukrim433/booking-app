@@ -16,12 +16,7 @@ const Navbar = () => {
   return (
     <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
       <NavLink to="/">
-        <h1 className="text-lg font-bold text-primary cursor-pointer">
-          <span>
-            <img className="w-44 ml-3" src={assets.logo} alt="logo" />
-          </span>
-          Docday
-        </h1>
+        <img className="w-44 ml-3 cursor-pointer" src={assets.logo} alt="logo" />
       </NavLink>
 
       <ul className="hidden md:flex items-start gap-5 font-medium">
