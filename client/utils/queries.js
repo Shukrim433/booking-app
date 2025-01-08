@@ -24,3 +24,21 @@ export const QUERY_DOCTORS = gql`
     }
   }
 `;
+
+// doctorsBySpeciality(speciality: String!): [Doctor]
+export const QUERY_DOCTORS_BY_SPECIALITY = gql`
+  query getDoctorsBySpeciality($speciality: String) {
+    doctorsBySpeciality(speciality: $speciality) {
+      _id
+      name
+      email
+      image
+      speciality
+      degree
+      experience
+      about
+      available
+      fees
+    }
+  }
+`;
