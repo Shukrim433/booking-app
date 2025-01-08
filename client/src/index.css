@@ -18,3 +18,13 @@
 ::-webkit-scrollbar {
   @apply hidden;
 }
+
+/* MAKE FOOTER STICK TO THE BOTTOM OF ALL PAGES */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  margin-top: auto;
+}

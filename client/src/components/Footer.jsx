@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <div className="md:mx-10 text-gray-600">
+    <div className="footer md:mx-10 text-gray-600">
       {/* TOP */}
       <div className="flex flex-col sm:grid grid-cols-[4fr_1fr_1fr] gap-14 my-10 mt-40">
         {/* LEFT */}
