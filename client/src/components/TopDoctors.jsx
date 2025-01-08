@@ -25,7 +25,7 @@ const TopDoctors = () => {
         ) : (
           doctors.slice(0, 10).map((doctor) => (
             <div
-              onClick={() => navigate(`doctors/${doctor._id}`)}
+              onClick={() => navigate(`appointments/${doctor._id}`)}
               className="border rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 "
               key={doctor._id}
             >
