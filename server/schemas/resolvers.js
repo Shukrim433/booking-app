@@ -29,8 +29,9 @@ const resolvers = {
     },
     // doctorsBySpeciality(speciality: String!): [Doctor]
     doctorsBySpeciality: async (parent, { speciality }) => {
+      const params = speciality ? { speciality } : {};
       try {
-        return await Doctor.find({ speciality });
+        return await Doctor.find(params);
       } catch (error) {
         console.log("error in speciality resolver:", error.message);
       }
