@@ -12,9 +12,7 @@ const Doctors = () => {
 
   const doctors = data?.doctorsBySpeciality || [];
 
-  if (!doctors) {
-    console.log("no docs by speciality");
-  }
+  if (loading) return <div>loading...</div>;
   return (
     <div>
       <p>Browse through these specialities</p>
