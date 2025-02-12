@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import CheckBadge from "../components/icons/CheckBadge";
 import InfoCircle from "../components/icons/InfoCircle";
+import RelatedDoctors from "../components/RelatedDoctors";
 
 const Doctor = () => {
   const { doctorId } = useParams();
@@ -155,6 +156,9 @@ const Doctor = () => {
           Book appointment
         </button>
       </div>
+
+      {/*  Related Doctors */}
+      <RelatedDoctors doctorId={doctorId} speciality={doctor.speciality} />
     </div>
   );
 };
