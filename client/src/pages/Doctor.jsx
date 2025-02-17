@@ -120,6 +120,7 @@ const Doctor = () => {
       <div className="sm:ml-72 sm:pl-4 font-medium mt-10">
         <p>Booking slots</p>
         <div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
+          {/* when you onClick a day it will set the slotIndex state and highlight the selected day */}
           {docSlots.length &&
             docSlots.map((slot, index) => (
               <div
@@ -137,6 +138,7 @@ const Doctor = () => {
             ))}
         </div>
         <div className="flex items-center w-full mt-4 gap-3 overflow-x-scroll ">
+          {/* when you onClick a time slot it will set the timeSlot state and highlight the selected day */}
           {docSlots.length &&
             docSlots[slotIndex].map((slot, index) => (
               <p
