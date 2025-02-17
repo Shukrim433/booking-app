@@ -107,9 +107,17 @@ const Doctors = () => {
               />
               <div className="px-4 py-2 border-x border-b rounded-b-lg">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-600 border rounded-full "></div>{" "}
-                  <p className="text-green-600">
-                    {doctor.available ? "Available" : "Not Available"}
+                  <p
+                    className={`${
+                      doctor.available ? "bg-green-600" : "bg-red-600"
+                    } rounded-full w-2 h-2`}
+                  ></p>
+                  <p
+                    className={`${
+                      doctor.available ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {doctor.available ? "Available" : "Unavailable"}
                   </p>
                 </div>
                 <p className="text-lg font-medium">{doctor.name}</p>

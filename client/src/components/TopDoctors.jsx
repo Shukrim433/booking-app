@@ -23,6 +23,7 @@ const TopDoctors = () => {
         {loading ? (
           <div>loading...</div>
         ) : (
+          /* render a max of 10 topDoctors (hence the splice) */
           doctors.slice(0, 10).map((doctor) => (
             <div
               onClick={() => navigate(`appointments/${doctor._id}`)}
@@ -35,9 +36,19 @@ const TopDoctors = () => {
                 alt="doctor photo"
               />
               <div className="p-4">
-                <div className="flex items-center gap-2 text-center text-green-600">
-                  <p className="w-2 h-2 bg-green-600 rounded-full"></p>{" "}
-                  <p>{doctor.available ? "Available" : "Not Available"}</p>
+                <div className="flex items-center gap-2">
+                  <p
+                    className={`${
+                      doctor.available ? "bg-green-600" : "bg-red-600"
+                    } rounded-full w-2 h-2`}
+                  ></p>
+                  <p
+                    className={`${
+                      doctor.available ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {doctor.available ? "Available" : "Unavailable"}
+                  </p>
                 </div>
                 <p className="text-lg font-medium">{doctor.name}</p>
                 <p className="text-gray-600">{doctor.speciality}</p>
