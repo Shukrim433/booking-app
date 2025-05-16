@@ -96,7 +96,7 @@ const resolvers = {
         console.log("error in login resolver:", error.message);
       }
     },
-    // addAppointment(doctorId, slot_month: String!, slot_time: String!, slot_date: String!, reason: String!): Appointment
+    // addAppointment(doctorId: String!, slot_month: String!, slot_time: String!, slot_date: String!, reason: String!): Appointment
     addAppointment: async (
       parent,
       { doctorId, slot_month, slot_time, slot_date, reason },
