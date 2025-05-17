@@ -25,7 +25,7 @@ const RelatedDoctors = ({ doctorId, speciality }) => {
   return (
     <div className="flex flex-col items-center gap-4 my-16 md:mx-10">
       <p className="font-medium text-3xl">Related Doctors</p>
-      <p>Simply brows through our extensive list of trusted doctors.</p>
+      <p>Simply browse through our extensive list of trusted doctors.</p>
       <div className="w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0">
         {/* render a max of 5 relatedDoctors (hence the splice)*/}
         {relatedDocs.slice(0, 5).map((relatedDoc, index) => (
