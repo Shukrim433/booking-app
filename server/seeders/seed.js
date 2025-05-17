@@ -7,6 +7,8 @@ const cleanDB = require("./cleanDB");
 db.once("open", async () => {
   try {
     await cleanDB("Appointment", "appointments");
+    // added to maybe fix the issue - npm run seed doesnt re-seed the users:
+    await cleanDB("User", "users");
     await cleanDB("Doctor", "doctors");
     await Doctor.create(doctorSeeds);
 
