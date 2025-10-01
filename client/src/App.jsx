@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Auth from "../utils/auth";
+import Auth from "./utils/auth";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { setContext } from "@apollo/client/link/context";

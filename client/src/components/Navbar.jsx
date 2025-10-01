@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
 import { NavLink, useNavigate } from "react-router-dom";
-import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
 import Profile from "./icons/Profile";
 import ChevronDown from "./icons/ChevronDown";
 
@@ -16,7 +16,11 @@ const Navbar = () => {
   return (
     <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
       <NavLink to="/">
-        <img className="w-44 ml-3 cursor-pointer" src={assets.logo} alt="logo" />
+        <img
+          className="w-44 ml-3 cursor-pointer"
+          src={assets.logo}
+          alt="logo"
+        />
       </NavLink>
 
       <ul className="hidden md:flex items-start gap-5 font-medium">

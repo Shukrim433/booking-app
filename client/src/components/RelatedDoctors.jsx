@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { QUERY_DOCTORS_BY_SPECIALITY } from "../../utils/queries";
+import { QUERY_DOCTORS_BY_SPECIALITY } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 

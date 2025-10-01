@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { QUERY_DOCTOR } from "../../utils/queries";
+import { QUERY_DOCTOR } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import CheckBadge from "../components/icons/CheckBadge";

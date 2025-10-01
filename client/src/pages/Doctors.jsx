@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { QUERY_DOCTORS_BY_SPECIALITY } from "../../utils/queries";
+import { QUERY_DOCTORS_BY_SPECIALITY } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 
 const Doctors = () => {
