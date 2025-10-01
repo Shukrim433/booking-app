@@ -4,8 +4,6 @@ const typeDefs = `
     fullName: String!
     email: String!
     password: String!
-    gender: String
-    phone: String
   }
 
   type Auth {
@@ -55,8 +53,6 @@ const typeDefs = `
       fullName: String!,
       email: String!,
       password: String!,
-      gender: String,
-      phone: String
     ): Auth
     login(email: String!, password: String!): Auth
     addAppointment(doctorId: String!, slot_month: String!, slot_time: String!, slot_date: String!, reason: String!): Appointment

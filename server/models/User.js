@@ -18,14 +18,14 @@ const userSchema = new Schema({
     required: true,
     minLenght: 6,
   },
-  gender: {
+ /*  gender: {
     type: String,
     default: "Not Selected",
   },
   phone: {
     type: String,
     default: "--",
-  },
+  }, */
 });
 
 userSchema.pre("save", async function (next) {
