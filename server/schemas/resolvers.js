@@ -1,5 +1,7 @@
+const { GraphQLError } = require("graphql");
 const { User, Doctor, Appointment } = require("../models");
 const { findOneAndUpdate } = require("../models/User");
+const { isValidFullName, isValidPassword } = require("../utils/validators");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
@@ -63,11 +65,32 @@ const resolvers = {
     // addUser(fullName: String!, email: String!, password: String!) : Auth
     addUser: async (parent, { fullName, email, password }) => {
       try {
+        // validate full name:
+        const validFn = isValidFullName(fullName);
+        if (!validFn) {
+          throw new GraphQLError("This is not a valid full name");
+        }
+
+        // check for existing email:
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+          throw new GraphQLError(
+            "This email is already registered to an account"
+          );
+        }
+
+        // validate password:
+        const validPw = isValidPassword(password);
+        if (!validPw) {
+          throw new GraphQLError("This is not a valid password");
+        }
+
         const user = await User.create({
           fullName,
           email,
           password,
         });
+
         const token = signToken(user);
         return { token, user };
       } catch (error) {
@@ -79,12 +102,12 @@ const resolvers = {
       try {
         const user = await User.findOne({ email });
         if (!user) {
-          throw AuthenticationError;
+          throw new GraphQLError("This email does not exist in our database");
         }
 
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) {
-          throw AuthenticationError;
+          throw new GraphQLError("This password is not correct");
         }
 
         const token = signToken(user);
