@@ -29,18 +29,26 @@ const Login = () => {
     });
   };
 
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
     try {
       // pass variables into login mutation function:
       const { data } = await login({
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token); // login user with the token returned from the mutation
-      setFormState({ email: "", password: "" }); // clear the form
+      // if statement to prevent app from crashing if login fails and no token is returned:
+      if (data?.login?.token) {
+        Auth.login(data.login.token); // login user with the token returned from the mutation
+        setFormState({ email: "", password: "" }); // clear the form
+      } else {
+        // if everything seems valid & the form is still wont submit - its because the email &/or password is incorrect so:
+        toast.error("Invalid email or password");
+      }
     } catch (e) {
-      console.error(e); //TRIED PUTTING TOAST HERE BUT NEED TO FIGURE OUT HOW TO GET MESSAGE TO BE ACCURATE
+      console.error(e);
     }
   };
 
@@ -61,6 +69,7 @@ const Login = () => {
             <p>Email:</p>
             <input
               className="border rounded-md pl-3 py-1"
+              required
               type="email"
               name="email"
               value={formState.email}
@@ -72,6 +81,7 @@ const Login = () => {
             <p>Password:</p>
             <input
               className="border rounded-md pl-3 py-1"
+              required
               type="password"
               name="password"
               value={formState.password}
