@@ -15,13 +15,22 @@ class AuthService {
     return localStorage.getItem("id_token");
   }
 
-  isTokenExpired(token) {
-    const decoded = decode(token);
-    if (decoded.exp < Date.now() / 1000) {
-      localStorage.removeItem("id_token");
+isTokenExpired(token) {
+  // if statement to prevent app from crashing if login/signup fails and no token is returned:
+    if (!token) return true; // no token means "expired"
+
+    try {
+      const decoded = decode(token);
+      if (decoded.exp < Date.now() / 1000) {
+        localStorage.removeItem("id_token"); // cleanup
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.error("Invalid token in isTokenExpired:", err.message);
+      localStorage.removeItem("id_token"); // remove bad token
       return true;
     }
-    return false;
   }
 
   getProfile() {
