@@ -4,6 +4,7 @@ import { SIGNUP_USER } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import Auth from "../utils/auth";
 
 const Signup = () => {
@@ -32,19 +33,43 @@ const Signup = () => {
     });
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // checking for invalid full name:
+    const regex = /^[\p{L}'-]+(?:[\s,.]+[\p{L}'-.]+)+$/u;
+    const validFullName = regex.test(formState.fullName.trim());
+    if (!validFullName) {
+      toast.error("Please enter a valid full name");
+      return; // stop submission
+    }
+
+    // checking for invalid password:
+    const regex2 =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._-])[A-Za-z\d@$!%*?&._-]{8,}$/;
+    const validPassword = regex2.test(formState.password.trim());
+    if (!validPassword) {
+      toast.error(
+        "Please enter a valid password: \n- Minimum 8 characters total \n- At least one lowercase letter \n- At least one uppercase letter \n- At least one number \n- At least one special character"
+      );
+      return; // stop submition
+    }
 
     try {
       const { data } = await addUser({
         variables: { ...formState },
       });
 
-      Auth.login(data.addUser.token);
-      setFormState({ fullName: "", email: "", password: "" });
+      // if statement to prevent app from crashing if signup fails and no token is returned:
+      if (data?.addUser?.token) {
+        setFormState({ fullName: "", email: "", password: "" });
+        Auth.login(data.addUser.token);
+      } else {
+        // if everything seems valid & the form is still wont submit - its because the email is already in use so:
+        toast.error("This email is already registered to an account.");
+      }
     } catch (err) {
-      console.error(err);
+      console.error("Signup error", err);
     }
   };
 
@@ -65,6 +90,7 @@ const Signup = () => {
             <p>Full Name:</p>
             <input
               className="border rounded-md pl-3 py-1"
+              required
               type="text"
               name="fullName"
               placeholder="Full Name"
@@ -77,6 +103,7 @@ const Signup = () => {
             <p>Email:</p>
             <input
               className="border rounded-md pl-3 py-1"
+              required
               type="email"
               name="email"
               placeholder="Email"
@@ -89,6 +116,7 @@ const Signup = () => {
             <p>Password:</p>
             <input
               className="border rounded-md pl-3 py-1"
+              required
               type="password"
               name="password"
               placeholder="Password"
