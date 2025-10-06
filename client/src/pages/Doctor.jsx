@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { QUERY_DOCTOR } from "../utils/queries";
+import { BOOK_APPOINTMENT } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import CheckBadge from "../components/icons/CheckBadge";
@@ -17,6 +19,27 @@ const Doctor = () => {
     variables: { _id: doctorId },
   });
   const doctor = data?.doctor || {};
+
+  // STARTED APPT BOOKING FUNCTIONALITY HERE---
+  const [addAppointment, { error: apptError }] = useMutation(BOOK_APPOINTMENT);
+
+  const handleClick = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await addAppointment({
+        variables: {
+          doctorId: doctorId,
+          slot_month: "NEED TO ADD",
+          slot_time: "NEED TO ADD",
+          slot_date: "NEED TO ADD",
+          reason: "NEED TO ADD",
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  // END OF APPT BOOKING FUNCTIONALITY HERE---
 
   const getAvailableSlots = async () => {
     setDocSlots([]);
@@ -154,7 +177,7 @@ const Doctor = () => {
               </p>
             ))}
         </div>
-        <button className="bg-primary text-white font-light rounded-full px-14 py-2  cursor-pointer my-8">
+        <button onClick={handleClick} className="bg-primary text-white font-light rounded-full px-14 py-2  cursor-pointer my-8">
           Book appointment
         </button>
       </div>
